@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUNA Beauty — Салон краси у Варшаві</title>
+<meta name="description" content="LUNA Beauty — елітний салон краси у Варшаві.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%23C8A97E' stroke-width='3'/><path d='M58 22c0 24-22 38-22 38s22-6 22-38z' fill='%23C8A97E'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0B0A09;--bg2:#141210;--surface:#1C1A17;--surface2:#252220;--cream:#F5EDE4;--sand:#D4C4B0;--gold:#C8A97E;--gold-dim:#9E845F;--blush:#C9908A;--white:#FDFCFB;--text:#B8B0A5;--text-dim:#736C63;--border:rgba(200,169,126,.12)}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:var(--bg)}
+a{color:inherit;text-decoration:none}
+.lang{position:fixed;top:32px;right:32px;z-index:1001;display:flex;border:1px solid var(--border);border-radius:2px;overflow:hidden;backdrop-filter:blur(24px);background:rgba(11,10,9,.6)}
+.lang button{border:none;background:transparent;color:var(--text-dim);font-family:'Sora',sans-serif;font-size:10px;font-weight:500;padding:10px 18px;cursor:pointer;transition:.3s;letter-spacing:1.5px}
+.lang button.on{background:var(--gold);color:var(--bg)}
+[data-pl]{display:none}
+body.pl [data-uk]{display:none}
+body.pl [data-pl]{display:block}
+body.pl span[data-pl],body.pl a[data-pl],body.pl h1[data-pl],body.pl h2[data-pl],body.pl h3[data-pl],body.pl p[data-pl],body.pl div[data-pl],body.pl label[data-pl],body.pl option[data-pl],body.pl button[data-pl]{display:inline}
+body:not(.pl) span[data-pl],body:not(.pl) a[data-pl],body:not(.pl) h1[data-pl],body:not(.pl) h2[data-pl],body:not(.pl) h3[data-pl],body:not(.pl) p[data-pl],body:not(.pl) div[data-pl],body:not(.pl) label[data-pl],body:not(.pl) option[data-pl],body:not(.pl) button[data-pl]{display:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:28px 48px;display:flex;justify-content:space-between;align-items:center;transition:.5s}
+nav.scrolled{background:rgba(11,10,9,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:20px 48px}
+.logo{font-family:'Marcellus',serif;font-size:22px;color:var(--cream);letter-spacing:6px;text-transform:uppercase}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);transition:.3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;background:var(--gold);transition:.4s}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.burger span{width:24px;height:1px;background:var(--cream);display:block;transition:.3s}
+.hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.45) saturate(.8)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 0%,transparent 40%,transparent 70%,rgba(11,10,9,.4) 100%)}
+.hero-content{position:relative;z-index:2;padding:0 48px 100px;max-width:1600px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:80px}
+.hero-text{max-width:800px}
+.hero-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0;animation:fadeIn .8s .4s forwards;display:flex;align-items:center;gap:16px}
+.hero-eyebrow::before{content:'';width:48px;height:1px;background:var(--gold)}
+.hero h1{font-family:'Marcellus',serif;font-size:clamp(52px,7vw,110px);font-weight:400;line-height:1;color:var(--cream);margin-bottom:28px;opacity:0;animation:fadeIn .8s .6s forwards;letter-spacing:-2px}
+.hero h1 em{font-style:italic;color:var(--gold);display:block;font-size:.55em;margin-top:8px;letter-spacing:2px}
+.hero-sub{font-size:15px;line-height:1.8;color:var(--sand);max-width:440px;margin-bottom:44px;opacity:0;animation:fadeIn .8s .8s forwards}
+.hero-cta{display:flex;gap:16px;opacity:0;animation:fadeIn .8s 1s forwards}
+.hero-stats{display:flex;flex-direction:column;gap:36px;opacity:0;animation:fadeIn .8s 1.1s forwards;padding-bottom:20px}
+.stat{text-align:right}
+.stat-num{font-family:'Marcellus',serif;font-size:48px;color:var(--cream);line-height:1}
+.stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:18px 40px;font-family:'Sora',sans-serif;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:.4s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-gold:hover{background:var(--cream);transform:translateY(-2px);box-shadow:0 12px 40px rgba(200,169,126,.2)}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.marquee{padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;animation:marq 30s linear infinite}
+.marquee-item{font-family:'Marcellus',serif;font-size:14px;letter-spacing:6px;text-transform:uppercase;color:var(--text-dim);padding:0 48px;display:inline-flex;align-items:center;gap:48px}
+.marquee-item::after{content:'\2726';color:var(--gold);font-size:8px}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.intro{padding:160px 48px;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center}
+.intro-tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.intro-tag::before{content:'';width:32px;height:1px;background:var(--gold)}
+.intro h2{font-family:'Marcellus',serif;font-size:clamp(36px,4vw,56px);font-weight:400;color:var(--cream);line-height:1.15;margin-bottom:24px}
+.intro p{font-size:15px;line-height:1.9;color:var(--text);max-width:480px}
+.intro-img{position:relative}
+.intro-img img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:brightness(.9) saturate(.9)}
+.intro-img::before{content:'';position:absolute;top:-24px;right:-24px;width:160px;height:160px;border:1px solid var(--gold);opacity:.3;z-index:-1}
+.services{padding:140px 0;position:relative}
+.services::before{content:'';position:absolute;inset:0;background:var(--bg2)}
+.services-inner{max-width:1400px;margin:0 auto;padding:0 48px;position:relative;z-index:1}
+.section-head{margin-bottom:80px}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.tag::before{content:'';width:32px;height:1px;background:var(--gold)}
+.section-title{font-family:'Marcellus',serif;font-size:clamp(36px,4vw,52px);font-weight:400;color:var(--cream);line-height:1.2}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.srv{background:var(--bg2);padding:52px 40px;transition:.5s;position:relative;overflow:hidden}
+.srv::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--gold),var(--blush));transform:scaleX(0);transition:.5s;transform-origin:left}
+.srv:hover::before{transform:scaleX(1)}
+.srv:hover{background:var(--surface)}
+.srv-num{font-family:'Marcellus',serif;font-size:52px;color:var(--border);line-height:1;margin-bottom:20px;transition:.4s}
+.srv:hover .srv-num{color:rgba(200,169,126,.25)}
+.srv h3{font-family:'Marcellus',serif;font-size:22px;font-weight:400;color:var(--cream);margin-bottom:12px;letter-spacing:.5px}
+.srv p{font-size:13px;line-height:1.75;color:var(--text-dim);margin-bottom:20px}
+.srv-price{font-size:13px;font-weight:500;color:var(--gold);letter-spacing:1px}
+.gallery{padding:140px 0 100px;overflow:hidden}
+.gallery-head{max-width:1400px;margin:0 auto;padding:0 48px 64px}
+.gallery-scroll{display:flex;gap:20px;padding:0 48px;cursor:grab;-webkit-overflow-scrolling:touch;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}
+.gallery-scroll::-webkit-scrollbar{display:none}
+.gallery-card{flex:0 0 380px;scroll-snap-align:start;position:relative;overflow:hidden;border-radius:4px}
+.gallery-card img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:.6s;filter:brightness(.85) saturate(.9)}
+.gallery-card:hover img{transform:scale(1.06);filter:brightness(.95) saturate(1)}
+.gallery-label{position:absolute;bottom:0;left:0;right:0;padding:32px 28px;background:linear-gradient(0deg,rgba(11,10,9,.85) 0%,transparent);opacity:0;transition:.4s}
+.gallery-card:hover .gallery-label{opacity:1}
+.gallery-label span{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cream)}
+.gallery-hint{max-width:1400px;margin:0 auto;padding:32px 48px 0;display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text-dim);letter-spacing:1px}
+.gallery-hint svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.team{padding:140px 48px;max-width:1400px;margin:0 auto}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:72px}
+.team-card{position:relative;overflow:hidden;cursor:pointer}
+.team-card img{width:100%;aspect-ratio:2/3;object-fit:cover;transition:.7s;filter:brightness(.7) saturate(.85)}
+.team-card:hover img{transform:scale(1.04);filter:brightness(.8) saturate(1)}
+.team-info{position:absolute;bottom:0;left:0;right:0;padding:40px 32px;background:linear-gradient(0deg,rgba(11,10,9,.9) 0%,transparent)}
+.team-info h3{font-family:'Marcellus',serif;font-size:22px;font-weight:400;color:var(--cream);margin-bottom:6px}
+.team-info p{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.reviews{padding:120px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center}
+.reviews-inner{max-width:800px;margin:0 auto}
+.review-quote{font-family:'Marcellus',serif;font-size:clamp(24px,3vw,38px);font-weight:400;color:var(--cream);line-height:1.5;font-style:italic;margin:40px 0 32px}
+.review-author{font-size:12px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+.review-stars{color:var(--gold);font-size:14px;letter-spacing:6px;margin-top:16px;display:block}
+.booking{padding:140px 48px;background:var(--bg2)}
+.booking-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
+.booking-left h2{font-family:'Marcellus',serif;font-size:clamp(36px,4vw,52px);font-weight:400;color:var(--cream);line-height:1.15;margin-bottom:24px}
+.booking-left p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:40px;max-width:440px}
+.perks{display:flex;flex-direction:column;gap:20px}
+.perk{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--sand)}
+.perk-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.book-form{display:flex;flex-direction:column;gap:20px}
+.fg{display:flex;flex-direction:column;gap:8px}
+.fg label{font-size:10px;font-weight:500;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{padding:16px 20px;border:1px solid var(--border);background:var(--surface);font-family:'Sora',sans-serif;font-size:13px;font-weight:300;color:var(--cream);transition:.3s;outline:none;border-radius:0;-webkit-appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg textarea{min-height:100px;resize:vertical}
+.fg select{cursor:pointer}
+.fg select option{background:var(--surface);color:var(--cream)}
+.contact{padding:140px 48px;max-width:1400px;margin:0 auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:72px}
+.c-items{display:flex;flex-direction:column;gap:40px}
+.c-item{display:flex;gap:20px;align-items:flex-start}
+.c-icon{width:48px;height:48px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.c-item h3{font-family:'Marcellus',serif;font-size:18px;font-weight:400;color:var(--cream);margin-bottom:6px}
+.c-item p{font-size:13px;color:var(--text-dim);line-height:1.7}
+.c-map{width:100%;height:480px;border:1px solid var(--border);overflow:hidden;filter:grayscale(.8) brightness(.8) contrast(1.1)}
+footer{padding:80px 48px 40px;border-top:1px solid var(--border)}
+.footer-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;padding-bottom:64px;border-bottom:1px solid var(--border)}
+.f-brand{max-width:320px}
+.f-logo{font-family:'Marcellus',serif;font-size:20px;color:var(--cream);margin-bottom:16px;letter-spacing:4px;text-transform:uppercase}
+.f-desc{font-size:13px;line-height:1.8;color:var(--text-dim);margin-bottom:28px}
+.f-social{display:flex;gap:12px}
+.f-social a{width:40px;height:40px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:.3s}
+.f-social a svg{width:16px;height:16px;fill:var(--text-dim);transition:.3s}
+.f-social a:hover{border-color:var(--gold);background:var(--gold)}
+.f-social a:hover svg{fill:var(--bg)}
+.f-col h4{font-family:'Marcellus',serif;font-size:14px;font-weight:400;color:var(--cream);margin-bottom:24px;letter-spacing:2px;text-transform:uppercase}
+.f-links{display:flex;flex-direction:column;gap:14px}
+.f-links a{font-size:13px;color:var(--text-dim);transition:.3s}
+.f-links a:hover{color:var(--gold)}
+.footer-bottom{max-width:1400px;margin:0 auto;padding-top:32px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text-dim);letter-spacing:1px}
+.mob-menu{position:fixed;inset:0;background:rgba(11,10,9,.97);backdrop-filter:blur(24px);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:.4s}
+.mob-menu.open{opacity:1;pointer-events:all}
+.mob-menu a{font-family:'Marcellus',serif;font-size:28px;color:var(--cream);letter-spacing:2px;transition:.3s}
+.mob-menu a:hover{color:var(--gold)}
+.mob-close{position:absolute;top:28px;right:28px;background:none;border:none;cursor:pointer;padding:8px}
+.mob-close svg{width:24px;height:24px;stroke:var(--cream);stroke-width:1.5}
+.r{opacity:0;transform:translateY(50px);transition:.9s cubic-bezier(.22,1,.36,1)}
+.r.v{opacity:1;transform:translateY(0)}
+.r-d1{transition-delay:.1s}.r-d2{transition-delay:.2s}.r-d3{transition-delay:.3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1100px){
+nav{padding:20px 28px}nav.scrolled{padding:16px 28px}
+.hero-content{grid-template-columns:1fr;padding:0 28px 80px;gap:40px}
+.hero-stats{flex-direction:row;gap:40px}.stat{text-align:left}
+.intro{grid-template-columns:1fr;padding:100px 28px;gap:60px}
+.srv-grid{grid-template-columns:1fr 1fr}
+.services-inner{padding:0 28px}
+.gallery-head{padding:0 28px 48px}.gallery-scroll{padding:0 28px}.gallery-card{flex:0 0 300px}
+.team{padding:100px 28px}.team-grid{grid-template-columns:1fr 1fr;gap:20px}
+.reviews{padding:80px 28px}
+.booking{padding:100px 28px}.booking-inner{grid-template-columns:1fr;gap:60px}
+.contact{padding:100px 28px}.contact-grid{grid-template-columns:1fr;gap:48px}
+footer{padding:60px 28px 32px}.footer-inner{grid-template-columns:1fr 1fr;gap:40px}
+.footer-bottom{flex-direction:column;gap:8px;text-align:center}
+}
+@media(max-width:640px){
+nav{padding:16px 20px}.nav-links{display:none}.burger{display:flex}
+.hero h1{font-size:clamp(40px,10vw,56px)}
+.hero-content{padding:0 20px 60px}.hero-stats{flex-direction:column;gap:20px}
+.intro{padding:80px 20px;gap:40px}
+.services-inner{padding:0 20px}.srv-grid{grid-template-columns:1fr}
+.gallery-head{padding:0 20px 40px}.gallery-scroll{padding:0 20px}.gallery-card{flex:0 0 280px}
+.team{padding:80px 20px}.team-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+.reviews{padding:60px 20px}
+.booking{padding:80px 20px}.booking-inner{gap:48px}
+.contact{padding:80px 20px}
+footer{padding:48px 20px 24px}.footer-inner{grid-template-columns:1fr;gap:32px;text-align:center}
+.f-social{justify-content:center}.lang{top:16px;right:16px}.gallery-hint{padding:24px 20px 0}
+}
+</style>
+</head>
+<body>
+<div class="lang">
+<button class="on" onclick="setLang('uk',this)">УКР</button>
+<button onclick="setLang('pl',this)">POL</button>
+</div>
+<nav id="nav">
+<a href="#" class="logo">LU<span>N</span>A</a>
+<ul class="nav-links">
+<li><a href="#services" data-uk>Послуги</a><a href="#services" data-pl>Usługi</a></li>
+<li><a href="#gallery" data-uk>Портфоліо</a><a href="#gallery" data-pl>Portfolio</a></li>
+<li><a href="#team" data-uk>Команда</a><a href="#team" data-pl>Zespół</a></li>
+<li><a href="#booking" data-uk>Запис</a><a href="#booking" data-pl>Rezerwacja</a></li>
+<li><a href="#contact" data-uk>Контакти</a><a href="#contact" data-pl>Kontakt</a></li>
+</ul>
+<button class="burger" onclick="toggleMob()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mob">
+<button class="mob-close" onclick="toggleMob()"><svg viewBox="0 0 24 24" fill="none"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg></button>
+<a href="#services" onclick="toggleMob()" data-uk>Послуги</a><a href="#services" onclick="toggleMob()" data-pl>Usługi</a>
+<a href="#gallery" onclick="toggleMob()" data-uk>Портфоліо</a><a href="#gallery" onclick="toggleMob()" data-pl>Portfolio</a>
+<a href="#team" onclick="toggleMob()" data-uk>Команда</a><a href="#team" onclick="toggleMob()" data-pl>Zespół</a>
+<a href="#booking" onclick="toggleMob()" data-uk>Запис</a><a href="#booking" onclick="toggleMob()" data-pl>Rezerwacja</a>
+<a href="#contact" onclick="toggleMob()" data-uk>Контакти</a><a href="#contact" onclick="toggleMob()" data-pl>Kontakt</a>
+</div>
+<section class="hero" id="home">
+<div class="hero-bg">
+<img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1800&h=1100&fit=crop&crop=center" alt="LUNA Beauty Salon">
+</div>
+<div class="hero-content">
+<div class="hero-text">
+<div class="hero-eyebrow" data-uk>Салон краси · Варшава</div>
+<div class="hero-eyebrow" data-pl>Salon piękności · Warszawa</div>
+<h1 data-uk>Мистецтво<br>бути собою <em>Luna Beauty</em></h1>
+<h1 data-pl>Sztuka<br>bycia sobą <em>Luna Beauty</em></h1>
+<p class="hero-sub" data-uk>Елітний простір, де індивідуальність зустрічається з професіоналізмом. Ваш образ — наша відповідальність.</p>
+<p class="hero-sub" data-pl>Elitarna przestrzeń, gdzie indywidualność spotyka się z profesjonalizmem. Twój wizerunek — nasza odpowiedzialność.</p>
+<div class="hero-cta">
+<a href="#booking" class="btn btn-gold" data-uk>Записатися</a>
+<a href="#booking" class="btn btn-gold" data-pl>Zarezerwuj</a>
+<a href="#services" class="btn btn-ghost" data-uk>Дізнатися більше</a>
+<a href="#services" class="btn btn-ghost" data-pl>Dowiedz się więcej</a>
+</div>
+</div>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">5.0</div><div class="stat-label">Google Rating</div></div>
+<div class="stat"><div class="stat-num">6+</div><div class="stat-label" data-uk>Років досвіду</div><div class="stat-label" data-pl>Lat doświadczenia</div></div>
+<div class="stat"><div class="stat-num">3K+</div><div class="stat-label" data-uk>Задоволених клієнтів</div><div class="stat-label" data-pl>Zadowolonych klientów</div></div>
+</div>
+</div>
+</section>
+<div class="marquee"><div class="marquee-track">
+<span class="marquee-item">Стрижки</span><span class="marquee-item">Балаяж</span><span class="marquee-item">Манікюр</span><span class="marquee-item">Макіяж</span><span class="marquee-item">Кератин</span><span class="marquee-item">Брови</span><span class="marquee-item">SPA</span><span class="marquee-item">Premium</span>
+<span class="marquee-item">Стрижки</span><span class="marquee-item">Балаяж</span><span class="marquee-item">Манікюр</span><span class="marquee-item">Макіяж</span><span class="marquee-item">Кератин</span><span class="marquee-item">Брови</span><span class="marquee-item">SPA</span><span class="marquee-item">Premium</span>
+</div></div>
+<section class="intro">
+<div class="r">
+<div class="intro-tag" data-uk>Про нас</div>
+<div class="intro-tag" data-pl>O nas</div>
+<h2 data-uk>Більше ніж салон —<br>простір для перевтілення</h2>
+<h2 data-pl>Więcej niż salon —<br>przestrzeń do metamorfozy</h2>
+<p data-uk>LUNA Beauty — це команда з 6 професійних майстрів, преміум-косметика від світових брендів та атмосфера, де кожна клієнтка відчуває себе особливою. Ми не просто робимо зачіски — ми створюємо стиль.</p>
+<p data-pl>LUNA Beauty to zespół 6 profesjonalnych mistrzów, kosmetyki premium od światowych marek i atmosfera, w której każda klientka czuje się wyjątkowo. Nie robimy tylko fryzur — tworzymy styl.</p>
+</div>
+<div class="intro-img r r-d1">
+<img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&h=900&fit=crop" alt="LUNA Interior">
+</div>
+</section>
+<section class="services" id="services">
+<div class="services-inner">
+<div class="section-head r">
+<div class="tag" data-uk>Послуги</div><div class="tag" data-pl>Usługi</div>
+<h2 class="section-title" data-uk>Що ми пропонуємо</h2><h2 class="section-title" data-pl>Co oferujemy</h2>
+</div>
+<div class="srv-grid">
+<div class="srv r"><div class="srv-num">01</div><h3 data-uk>Стрижки та укладки</h3><h3 data-pl>Strzyżenie i stylizacja</h3><p data-uk>Класичні та сучасні стрижки для жінок та чоловіків. Професійна укладка на будь-яку подію.</p><p data-pl>Klasyczne i nowoczesne cięcia. Profesjonalna stylizacja na każdą okazję.</p><div class="srv-price" data-uk>від 120 zł</div><div class="srv-price" data-pl>od 120 zł</div></div>
+<div class="srv r r-d1"><div class="srv-num">02</div><h3 data-uk>Фарбування</h3><h3 data-pl>Koloryzacja</h3><p data-uk>Балаяж, мелірування, омбре, тонування. Преміум-фарби без аміаку.</p><p data-pl>Balayage, pasemka, ombre, tonowanie. Kosmetyki premium bez amoniaku.</p><div class="srv-price" data-uk>від 200 zł</div><div class="srv-price" data-pl>od 200 zł</div></div>
+<div class="srv r r-d2"><div class="srv-num">03</div><h3 data-uk>Манікюр та педикюр</h3><h3 data-pl>Manicure i pedicure</h3><p data-uk>Класичний, апаратний, комбінований. Гель-лак, нарощування.</p><p data-pl>Klasyczny, sprzętowy, hybrydowy. Lakier hybrydowy, przedłużanie.</p><div class="srv-price" data-uk>від 80 zł</div><div class="srv-price" data-pl>od 80 zł</div></div>
+<div class="srv r"><div class="srv-num">04</div><h3 data-uk>Догляд за волоссям</h3><h3 data-pl>Pielęgnacja włosów</h3><p data-uk>Ботокс, кератинове випрямлення, SPA-процедури та відновлення.</p><p data-pl>Botoks, prostowanie keratynowe, zabiegi SPA i regeneracja.</p><div class="srv-price" data-uk>від 150 zł</div><div class="srv-price" data-pl>od 150 zł</div></div>
+<div class="srv r r-d1"><div class="srv-num">05</div><h3 data-uk>Брови та вії</h3><h3 data-pl>Brwi i rzęsy</h3><p data-uk>Архітектура брів, ламінування вій, перманентний макіяж.</p><p data-pl>Architektura brwi, laminacja rzęs, makijaż permanentny.</p><div class="srv-price" data-uk>від 60 zł</div><div class="srv-price" data-pl>od 60 zł</div></div>
+<div class="srv r r-d2"><div class="srv-num">06</div><h3 data-uk>Макіяж</h3><h3 data-pl>Makijaż</h3><p data-uk>Денний, вечірній, весільний. Професійні техніки нанесення.</p><p data-pl>Dzienny, wieczorowy, ślubny. Profesjonalne techniki aplikacji.</p><div class="srv-price" data-uk>від 100 zł</div><div class="srv-price" data-pl>od 100 zł</div></div>
+</div>
+</div>
+</section>
+<section class="gallery" id="gallery">
+<div class="gallery-head r">
+<div class="tag" data-uk>Портфоліо</div><div class="tag" data-pl>Portfolio</div>
+<h2 class="section-title" data-uk>Наші роботи</h2><h2 class="section-title" data-pl>Nasze prace</h2>
+</div>
+<div class="gallery-scroll" id="galleryScroll">
+<div class="gallery-card"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&h=800&fit=crop" alt=""><div class="gallery-label"><span data-uk>Укладка</span><span data-pl>Stylizacja</span></div></div>
+<div class="gallery-card"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=600&h=800&fit=crop&crop=faces" alt=""><div class="gallery-label"><span data-uk>Балаяж</span><span data-pl>Balayage</span></div></div>
+<div class="gallery-card"><img src="https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=600&h=800&fit=crop" alt=""><div class="gallery-label"><span data-uk>Манікюр</span><span data-pl>Manicure</span></div></div>
+<div class="gallery-card"><img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600&h=800&fit=crop" alt=""><div class="gallery-label"><span data-uk>Макіяж</span><span data-pl>Makijaż</span></div></div>
+<div class="gallery-card"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=800&fit=crop" alt=""><div class="gallery-label"><span data-uk>Вечірній образ</span><span data-pl>Wieczorowy look</span></div></div>
+<div class="gallery-card"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=800&fit=crop" alt=""><div class="gallery-label"><span data-uk>Фарбування</span><span data-pl>Koloryzacja</span></div></div>
+</div>
+<div class="gallery-hint">
+<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+<span data-uk>Перетягніть для перегляду</span><span data-pl>Przeciągnij, aby zobaczyć więcej</span>
+</div>
+</section>
+<section class="team" id="team">
+<div class="section-head r">
+<div class="tag" data-uk>Команда</div><div class="tag" data-pl>Zespół</div>
+<h2 class="section-title" data-uk>Наші майстри</h2><h2 class="section-title" data-pl>Nasi mistrzowie</h2>
+</div>
+<div class="team-grid">
+<div class="team-card r"><img src="https://images.unsplash.com/photo-1598550874175-4d045f15ef46?w=500&h=750&fit=crop&crop=faces" alt=""><div class="team-info"><h3 data-uk>Олена Коваленко</h3><h3 data-pl>Olena Kowalenko</h3><p data-uk>Топ-стиліст · Колорист</p><p data-pl>Top stylista · Kolorystka</p></div></div>
+<div class="team-card r r-d1"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=750&fit=crop&crop=faces" alt=""><div class="team-info"><h3 data-uk>Анна Мельник</h3><h3 data-pl>Anna Melnyk</h3><p data-uk>Майстер манікюру</p><p data-pl>Mistrz manicure</p></div></div>
+<div class="team-card r r-d2"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=750&fit=crop&crop=faces" alt=""><div class="team-info"><h3 data-uk>Марія Шевченко</h3><h3 data-pl>Maria Szewczenko</h3><p data-uk>Візажист</p><p data-pl>Make-up artist</p></div></div>
+</div>
+</section>
+<section class="reviews">
+<div class="reviews-inner r">
+<div class="tag" style="justify-content:center" data-uk>Відгуки</div><div class="tag" style="justify-content:center" data-pl>Opinie</div>
+<div class="review-quote" data-uk>&#171;Прийшла за балаяжем &#8212; отримала шедевр. Олена відчуває колір як ніхто інший. Тепер тільки LUNA!&#187;</div>
+<div class="review-quote" data-pl>&#171;Przyszłam na balayage &#8212; dostałam arcydzieło. Olena czuje kolor jak nikt inny. Teraz tylko LUNA!&#187;</div>
+<div class="review-author" data-uk>Катерина М. &#8212; постійна клієнтка</div>
+<div class="review-author" data-pl>Kateryna M. &#8212; stała klientka</div>
+<span class="review-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+</div>
+</section>
+<section class="booking" id="booking">
+<div class="booking-inner">
+<div class="booking-left r">
+<div class="tag" data-uk>Онлайн-запис</div><div class="tag" data-pl>Rezerwacja online</div>
+<h2 data-uk>Запишіться<br>на візит</h2><h2 data-pl>Umów się<br>na wizytę</h2>
+<p data-uk>Заповніть форму &#8212; ми зв&#8217;яжемося протягом години для підтвердження. Або зателефонуйте нам напряму.</p>
+<p data-pl>Wypełnij formularz &#8212; skontaktujemy się w ciągu godziny. Lub zadzwoń bezpośrednio.</p>
+<div class="perks">
+<div class="perk" data-uk><div class="perk-dot"></div>Відповідь протягом 1 години</div>
+<div class="perk" data-pl><div class="perk-dot"></div>Odpowiedź w ciągu 1 godziny</div>
+<div class="perk" data-uk><div class="perk-dot"></div>Безкоштовна консультація</div>
+<div class="perk" data-pl><div class="perk-dot"></div>Bezpłatna konsultacja</div>
+<div class="perk" data-uk><div class="perk-dot"></div>Гнучкий графік 7 днів на тиждень</div>
+<div class="perk" data-pl><div class="perk-dot"></div>Elastyczny grafik 7 dni w tygodniu</div>
+</div>
+</div>
+<form class="book-form r r-d1" onsubmit="return handleBook(event)">
+<div class="fg"><label data-uk>Ім&#8217;я</label><label data-pl>Imię</label><input type="text" required></div>
+<div class="fg"><label data-uk>Телефон</label><label data-pl>Telefon</label><input type="tel" required></div>
+<div class="fg"><label data-uk>Послуга</label><label data-pl>Usługa</label>
+<select required>
+<option value="" data-uk>Оберіть послугу</option><option value="" data-pl>Wybierz usługę</option>
+<option value="h" data-uk>Стрижка</option><option value="h" data-pl>Strzyżenie</option>
+<option value="c" data-uk>Фарбування</option><option value="c" data-pl>Koloryzacja</option>
+<option value="m" data-uk>Манікюр</option><option value="m" data-pl>Manicure</option>
+<option value="k" data-uk>Макіяж</option><option value="k" data-pl>Makijaż</option>
+<option value="d" data-uk>Догляд за волоссям</option><option value="d" data-pl>Pielęgnacja włosów</option>
+<option value="b" data-uk>Брови та вії</option><option value="b" data-pl>Brwi i rzęsy</option>
+</select></div>
+<div class="fg"><label data-uk>Коментар</label><label data-pl>Komentarz</label><textarea></textarea></div>
+<button type="submit" class="btn btn-gold" style="width:100%;justify-content:center" data-uk>Відправити заявку</button>
+<button type="submit" class="btn btn-gold" style="width:100%;justify-content:center" data-pl>Wyślij zgłoszenie</button>
+</form>
+</div>
+</section>
+<section class="contact" id="contact">
+<div class="section-head r">
+<div class="tag" data-uk>Контакти</div><div class="tag" data-pl>Kontakt</div>
+<h2 class="section-title" data-uk>Як нас знайти</h2><h2 class="section-title" data-pl>Jak nas znaleźć</h2>
+</div>
+<div class="contact-grid">
+<div class="c-items r">
+<div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><h3 data-uk>Адреса</h3><h3 data-pl>Adres</h3><p>ul. Marszałkowska 115<br>00-102 Warszawa</p></div></div>
+<div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.07 2.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><h3 data-uk>Телефон</h3><h3 data-pl>Telefon</h3><p>+48 123 456 789</p></div></div>
+<div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><h3 data-uk>Графік</h3><h3 data-pl>Godziny</h3><p data-uk>Пн&#8211;Пт: 10:00 &#8212; 20:00<br>Сб&#8211;Нд: 10:00 &#8212; 18:00</p><p data-pl>Pon&#8211;Pt: 10:00 &#8212; 20:00<br>Sob&#8211;Niedz: 10:00 &#8212; 18:00</p></div></div>
+<div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><h3>Email</h3><p>hello@lunabeauty.pl</p></div></div>
+</div>
+<div class="c-map r r-d1">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.5974!2d21.0122!3d52.2297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDEzJzQ3LjAiTiAyMcKwMDAnNDQuMCJF!5e0!3m2!1sen!2spl!4v1234567890" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy"></iframe>
+</div>
+</div>
+</section>
+<footer>
+<div class="footer-inner">
+<div class="f-brand">
+<div class="f-logo">LUNA</div>
+<p class="f-desc" data-uk>Елітний салон краси у серці Варшави. Професійні послуги з догляду за волоссям, манікюру та макіяжу.</p>
+<p class="f-desc" data-pl>Ekskluzywny salon piękności w sercu Warszawy. Profesjonalne usługi pielęgnacji włosów, manicure i makijażu.</p>
+<div class="f-social">
+<a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+<a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+<a href="#"><svg viewBox="0 0 24 24"><path d="M21 3L1 11l7 2.5L18 7l-7 9.5V21l3.5-3.5L18 21l3-18z"/></svg></a>
+</div>
+</div>
+<div class="f-col"><h4 data-uk>Послуги</h4><h4 data-pl>Usługi</h4><div class="f-links">
+<a href="#services" data-uk>Стрижки</a><a href="#services" data-pl>Strzyżenie</a>
+<a href="#services" data-uk>Фарбування</a><a href="#services" data-pl>Koloryzacja</a>
+<a href="#services" data-uk>Манікюр</a><a href="#services" data-pl>Manicure</a>
+<a href="#services" data-uk>Макіяж</a><a href="#services" data-pl>Makijaż</a>
+</div></div>
+<div class="f-col"><h4 data-uk>Інформація</h4><h4 data-pl>Informacje</h4><div class="f-links">
+<a href="#team" data-uk>Про нас</a><a href="#team" data-pl>O nas</a>
+<a href="#gallery" data-uk>Галерея</a><a href="#gallery" data-pl>Galeria</a>
+<a href="#booking" data-uk>Ціни</a><a href="#booking" data-pl>Cennik</a>
+<a href="#contact" data-uk>Контакти</a><a href="#contact" data-pl>Kontakt</a>
+</div></div>
+<div class="f-col"><h4 data-uk>Контакти</h4><h4 data-pl>Kontakt</h4><div class="f-links">
+<a href="tel:+48123456789">+48 123 456 789</a>
+<a href="mailto:hello@lunabeauty.pl">hello@lunabeauty.pl</a>
+<a href="#">Instagram</a>
+<a href="#">Facebook</a>
+</div></div>
+</div>
+<div class="footer-bottom">
+<span data-uk>&#169; 2026 LUNA Beauty. Усі права захищені.</span>
+<span data-pl>&#169; 2026 LUNA Beauty. Wszelkie prawa zastrzeżone.</span>
+<span data-uk>Створено MANNET</span>
+<span data-pl>Stworzone przez MANNET</span>
+</div>
+</footer>
+<script>
+function setLang(l,btn){document.body.classList.toggle('pl',l==='pl');document.querySelectorAll('.lang button').forEach(function(b){b.classList.remove('on')});btn.classList.add('on')}
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',scrollY>60)});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+function toggleMob(){document.getElementById('mob').classList.toggle('open')}
+var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.r').forEach(function(el){obs.observe(el)});
+var gs=document.getElementById('galleryScroll'),isDown=false,startX,scrollL;
+gs.addEventListener('mousedown',function(e){isDown=true;gs.style.cursor='grabbing';startX=e.pageX-gs.offsetLeft;scrollL=gs.scrollLeft});
+gs.addEventListener('mouseleave',function(){isDown=false;gs.style.cursor='grab'});
+gs.addEventListener('mouseup',function(){isDown=false;gs.style.cursor='grab'});
+gs.addEventListener('mousemove',function(e){if(!isDown)return;e.preventDefault();var x=e.pageX-gs.offsetLeft;gs.scrollLeft=scrollL-(x-startX)*1.5});
+function handleBook(e){e.preventDefault();var btn=e.target.querySelector('button[type="submit"]');var orig=btn.textContent;btn.textContent=document.body.classList.contains('pl')?'Wysłano \u2713':'Відправлено \u2713';btn.style.background='#4a7c59';setTimeout(function(){btn.textContent=orig;btn.style.background='';e.target.reset()},3000);return false}
+</script>
+</body>
+</html>
